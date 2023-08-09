@@ -1,6 +1,6 @@
 # Harmony Bot
 
-> **Disclaimer**: this bot is created as a hobby project and is not used by the creator on any basis. If you intend to use this code for any purposes, you assume all legal responsibility.
+> **Disclaimer**: downloading copyright songs may be illegal in your country. This bot is created as a hobby project and is not used by the creator on any basis. If you intend to use this code for any purposes, you assume all legal responsibility.
 
 The bot helps you download music from streaming services like **Spotify, Soundcloud, YouTube, and YouTube Music**. All you need to do is send a link to the track on any of the above services. You can also send a search request and the bot will give you search results from YouTube.
 
@@ -49,4 +49,4 @@ alembic upgrade head
 python3 app.py
 ```
 
-Now you're all set to download the audio files from streaming services. But remember about **copyright**, appreciate other people's work.
+Now you're all set to download the audio files. But remember about **copyright**, appreciate other people's work. Please support the artists by buying their music.
