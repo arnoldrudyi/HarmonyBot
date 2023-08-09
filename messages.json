@@ -1,0 +1,16 @@
+[
+  {
+    "start_us": "\uD83C\uDFBC Hey, I am glad to <b>see you here</b>. I'll help you to search and download music from many popular streaming services.\n\nYou can send me links from <b>YouTube, Spotify, Soundcloud or YouTube Music</b> and I'll try to send you an audio in format <b>M4A AAC 128 Kbps</b> (original audio format on YouTube).\n\nAlso you can send a regular search query and I will send you the results from YouTube.",
+    "start_ua": "\uD83C\uDFBC Привіт, радий <b>бачити тебе тут</b>! Я допоможу тобі шукати та завантажувати музику з багатьох популярних потокових сервісів.\n\nТи можеш надіслати мені посилання з <b>YouTube, Spotify, Soundcloud або YouTube Music</b>, і я спробую надіслати тобі аудіо у форматі <b>M4A AAC 128 Kbps</b> (оригінальний формат аудіо на YouTube).\n\nТакож ти можеш надіслати звичайний пошуковий запит, а я надішлю тобі результати з YouTube.",
+    "unsupported_us": "\uD83D\uDD29 Unfortunately, you sent <b>unsupported link</b>.",
+    "unsupported_ua": "\uD83D\uDD29 На жаль, надіслане вами посилання <b>не підтримується</b>.",
+    "another_song_us": "\uD83D\uDD0E We searched hard but <b>couldn't find the exact same song in our sources</b>. Therefore, we are sending you <b>a song with a similar name</b>:",
+    "another_song_ua": "\uD83D\uDD0E Ми наполегливо шукали, але так і <b>не змогли знайти таку ж пісню в наших джерелах</b>. Тому надсилаємо Вам <b>пісню зі схожою назвою</b>:",
+    "error_us": "\uD83E\uDD7A What a mess! An error <b>occurred while downloading the file</b>.\n\nPlease try to download the same track from <b>another source</b> (<i>eg directly from YouTube</i>).",
+    "error_ua": "\uD83E\uDD7A От халепа! При завантаженні файлу <b>сталася помилка</b>.\n\nБудь ласка, спробуйте завантажити тей самий трек з <b>іншого джерела</b> (<i>наприклад, напряму з YouTube</i>).",
+    "found_us": "\uD83D\uDD2C Here's what <b>we found</b> for",
+    "found_ua": "\uD83D\uDD2C Ось, що <b>ми знайшли</b> за запитом",
+    "tooBig_us": "\uD83D\uDCC2 Unfortunately, this file is <b>too big</b> for downloading.",
+    "tooBig_ua": "\uD83D\uDCC2 На жаль, цей файл <b>завеликий</b> для завантаження."
+  }
+]
