@@ -37,7 +37,7 @@ def fetch_audio_info(link):
 def fetch_audio_bytecode(video):
     try:
         audio_bytecode_buffer = io.BytesIO()
-        video.streams.get_by_itag(140).stream_to_buffer(audio_bytecode_buffer)
+        video.streams.get_by_itag(139).stream_to_buffer(audio_bytecode_buffer)
         bytecode = audio_bytecode_buffer.getvalue()
         audio_bytecode_buffer.close()
 
