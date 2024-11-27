@@ -40,8 +40,7 @@ def send_audio(audio_dict, origin_message, loading_message):
                 audio_message = bot.send_audio(origin_message.chat.id, title=audio_dict['title'], performer=audio_dict['author'],
                                                duration=audio_dict['length'], thumbnail=audio_dict['thumbnail'],
                                                audio=audio_dict['audio'], reply_to_message_id=origin_message.id,
-                                               parse_mode='html',
-                                               caption='<a href="https://t.me/CaelniBot">caelni ☼☽</a>')
+                                               parse_mode='html')
                 session.add(Audio(url=audio_dict['video_id'], unique_id=audio_message.json['audio']['file_id']))
                 session.commit()
             except telebot.apihelper.ApiTelegramException:
@@ -53,7 +52,7 @@ def send_audio(audio_dict, origin_message, loading_message):
             try:
                 bot.delete_message(origin_message.chat.id, loading_message.id)
                 bot.send_audio(origin_message.chat.id, audio=audio_dict['unique_id'], reply_to_message_id=origin_message.id,
-                               parse_mode='html', caption='<a href="https://t.me/CaelniBot">caelni ☼☽</a>')
+                               parse_mode='html')
             except telebot.apihelper.ApiTelegramException:
                 account = session.query(Account).filter(Account.chatid == origin_message.chat.id).first()
                 bot.send_message(origin_message.chat.id, messages_dict[0][f'tooBig_{account.language}'],
