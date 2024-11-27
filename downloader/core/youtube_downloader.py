@@ -1,7 +1,7 @@
 import io
 import requests
 
-import pytube
+import pytubefix
 
 from downloader.utils.logger_cogs import logger
 from downloader.database.connect import SessionLocal
@@ -12,7 +12,7 @@ session = SessionLocal()
 
 
 def fetch_audio_info(link):
-    video = pytube.YouTube(link)
+    video = pytubefix.YouTube(link)
     audio = session.query(Audio).filter(Audio.url == video.video_id).first()
     if audio is None:
         thumbnail_bytecode = requests.get(video.thumbnail_url).content
@@ -37,11 +37,11 @@ def fetch_audio_info(link):
 def fetch_audio_bytecode(video):
     try:
         audio_bytecode_buffer = io.BytesIO()
-        video.streams.get_by_itag(139).stream_to_buffer(audio_bytecode_buffer)
+        video.streams.get_by_itag(250).stream_to_buffer(audio_bytecode_buffer)
         bytecode = audio_bytecode_buffer.getvalue()
         audio_bytecode_buffer.close()
 
         return bytecode
     except Exception as e:
-        logger.error(f'Error occurred while downloading the file: {e}')
+        logger.error(f'Error occurred while downloading the file: {repr(e)}')
         return None

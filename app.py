@@ -1,4 +1,5 @@
 import os
+import random
 from json import load
 import re
 
@@ -21,6 +22,15 @@ with open('messages.json', 'r', encoding='utf-8-sig') as file:
     messages_dict: list = load(file)
 
 
+def generate_random_username():
+    username = ''
+    for _ in range(5):
+        random_letter = chr(random.randint(ord('A'), ord('Z')))
+        username += random_letter
+
+    return username
+
+
 def send_audio(audio_dict, origin_message, loading_message):
     bot.send_chat_action(origin_message.chat.id, 'upload_document')
     if audio_dict is not None:
@@ -30,7 +40,8 @@ def send_audio(audio_dict, origin_message, loading_message):
                 audio_message = bot.send_audio(origin_message.chat.id, title=audio_dict['title'], performer=audio_dict['author'],
                                                duration=audio_dict['length'], thumbnail=audio_dict['thumbnail'],
                                                audio=audio_dict['audio'], reply_to_message_id=origin_message.id,
-                                               parse_mode='html')
+                                               parse_mode='html',
+                                               caption='<a href="https://t.me/CaelniBot">caelni ☼☽</a>')
                 session.add(Audio(url=audio_dict['video_id'], unique_id=audio_message.json['audio']['file_id']))
                 session.commit()
             except telebot.apihelper.ApiTelegramException:
@@ -42,7 +53,7 @@ def send_audio(audio_dict, origin_message, loading_message):
             try:
                 bot.delete_message(origin_message.chat.id, loading_message.id)
                 bot.send_audio(origin_message.chat.id, audio=audio_dict['unique_id'], reply_to_message_id=origin_message.id,
-                               parse_mode='html')
+                               parse_mode='html', caption='<a href="https://t.me/CaelniBot">caelni ☼☽</a>')
             except telebot.apihelper.ApiTelegramException:
                 account = session.query(Account).filter(Account.chatid == origin_message.chat.id).first()
                 bot.send_message(origin_message.chat.id, messages_dict[0][f'tooBig_{account.language}'],
@@ -115,25 +126,36 @@ def handle_url(message):
                          f"{messages_dict[0][f'found_{account.language}']} <code>{message.text}</code>:",
                          reply_markup=markup, reply_to_message_id=message.id, parse_mode='html')
 
+
 @bot.callback_query_handler(lambda call: True)
 def handle(call):
     if call.data == 'set_english':
+        if call.json['from'].get('username'):
+            username = call.json['from']['username']
+        else:
+            username = generate_random_username()
+
         if session.query(Account).filter(Account.chatid == call.message.chat.id).first():
             bot.delete_message(call.message.chat.id, call.message.message_id)
             bot.send_message(call.message.chat.id, '❌ This account is <b>already registered</b>.', parse_mode='html')
         else:
-            session.add(Account(chatid=call.message.chat.id, username=call.json['from']['username'],
+            session.add(Account(chatid=call.message.chat.id, username=username,
                                 is_admin=False, language='us'))
             session.commit()
             bot.delete_message(call.message.chat.id, call.message.message_id)
             bot.send_message(call.message.chat.id, messages_dict[0][f'start_us'], parse_mode='html')
 
     if call.data == 'set_ukrainian':
+        if call.json['from'].get('username'):
+            username = call.json['from']['username']
+        else:
+            username = generate_random_username()
+
         if session.query(Account).filter(Account.chatid == call.message.chat.id).first():
             bot.delete_message(call.message.chat.id, call.message.message_id)
             bot.send_message(call.message.chat.id, '❌ Цей акаунт <b>вже зареєстровано</b>.', parse_mode='html')
         else:
-            session.add(Account(chatid=call.message.chat.id, username=call.json['from']['username'],
+            session.add(Account(chatid=call.message.chat.id, username=username,
                                 is_admin=False, language='ua'))
             session.commit()
             bot.delete_message(call.message.chat.id, call.message.message_id)

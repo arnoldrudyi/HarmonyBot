@@ -1,4 +1,4 @@
-from pytube import Search
+from pytubefix import Search
 
 from downloader.utils.logger_cogs import logger
 

@@ -1,6 +1,6 @@
 import datetime
 
-from pytube import Search
+from pytubefix import Search
 from telebot import types
 
 
@@ -26,15 +26,15 @@ def generate_markup(videos, query, current_page, total_pages):
 
 
 def fetch_song_by_query(query):
-    videos = Search(query).results
+    videos = Search(query).videos
     return generate_markup(videos[0:][:5], query, 0, int(round(len(videos)/5, 0)))
 
 
 def next_page(query, current_page):
-    videos = Search(query).results
+    videos = Search(query).videos
     return generate_markup(videos[(current_page+1)*5:][:5], query, current_page+1, int(round(len(videos)/5, 0)))
 
 
 def previous_page(query, current_page):
-    videos = Search(query).results
+    videos = Search(query).videos
     return generate_markup(videos[(current_page-1)*5:][:5], query, current_page-1, int(round(len(videos)/5, 0)))
